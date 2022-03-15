@@ -1,0 +1,22 @@
+{
+  "name": "front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "npx snowpack dev",
+    "build": "npx snowpack build"
+  },
+  "keywords": [],
+  "author": "Andrea E / Ewan L / Théo A",
+  "license": "ISC",
+  "devDependencies": {
+    "snowpack": "^3.3.0"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "lit": "^2.0.0-rc.2",
+    "lodash": "^4.17.21",
+    "page": "^1.11.6"
+  }
+}
