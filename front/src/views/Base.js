@@ -22,4 +22,11 @@ export const style = css`
   :host([active]) {
     display: block;
   }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 50px;
+  }
 `;
