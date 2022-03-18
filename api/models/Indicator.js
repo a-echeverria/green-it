@@ -32,7 +32,7 @@ Indicator.init(
   {
     timestamps: false,
     sequelize: conn,
-    modelName: "Indicator",
+    modelName: "indicator",
     freezeTableName: true,
   }
 );

@@ -1,6 +1,6 @@
 import request from "../helpers/request";
 
-const uri = "/api/";
+const uri = "/api/indice/";
 const uriId = (id) => `${uri}/${id}`;
 
 export default {
