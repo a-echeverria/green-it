@@ -10,19 +10,18 @@ class IndiceHome extends Base {
 
   static get properties() {
     return {
-      indices: Array,
+      indice: Object,
       searchHandler: Function,
     };
   }
 
   constructor() {
     super();
-    this.indices = [];
+    this.indice = {};
     this.searchHandler = async () => {
       const value = this.inputEl.value;
       const req = await IndiceApi.get({ name: value });
-      console.log("req", req);
-      this.indices = req.data;
+      this.indice = req.data;
     };
   }
 
@@ -52,17 +51,23 @@ class IndiceHome extends Base {
           le calcul.
         </p>
         <div>
-          <p>Rechercher par nom de ville !</p>
+          <p>Rechercher par nom de commune !</p>
+          <p><i>(Le nom de la commune doit être complet, e.g Paris 13e arrondissement, Poitiers...)</i></p>
           <input type="text" id="search">
           <button @click="${this.searchHandler}"">Rechercher</button>
           <div>
-            ${this.indices.map(
-              (indice) => html`
-                <div>
-                  <p>${indice}</p>
-                </div>
-              `
-            )}
+            ${
+              !this.indice
+                ? "La ville n'a pas été trouvée"
+                : html` <ul>
+                    <li>Commune: ${this.indice.commune}</li>
+                    <li>Département: ${this.indice.departement}</li>
+                    <li>Région: ${this.indice.region}</li>
+                    <li>Score de la commune: ${this.indice.score_com}</li>
+                    <li>Score du département: ${this.indice.score_dep}</li>
+                    <li>Score de la Région: ${this.indice.score_reg}</li>
+                  </ul>`
+            }
           </div>
         </div>
       </div>
