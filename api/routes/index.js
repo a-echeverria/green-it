@@ -1,5 +1,5 @@
-const testRoute = require('./testRoute');
+const indiceRouter = require('./indiceRouter');
 
 module.exports = {
-  testRoute,
+  indiceRouter,
 }
