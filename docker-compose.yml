@@ -24,15 +24,14 @@ services:
     restart: always
 
   db:
-    image: postgres:alpine
+    image: mysql:8
     ports:
-      - 5432:5432
+      - 3306:3306
     environment:
-      POSTGRES_DB: app
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
+      MYSQL_DATABASE: app
+      MYSQL_ROOT_PASSWORD: password
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
+      - ./db:/var/lib/mysql:rw
 
   proxy:
     image: nginx:latest
@@ -45,10 +44,12 @@ services:
       - 443:443
     command: sh -c "nginx -g 'daemon off;'"
 
-  # adminer:
-  #   image: adminer:4.7.8
-  #   ports:
-  #     - 8080:8080
-
-volumes:
-  db-data: {}
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    depends_on:
+      - db
+    ports:
+      - 8888:80
+    environment:
+      PMA_HOST: db
+      UPLOAD_LIMIT: 50M
