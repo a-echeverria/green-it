@@ -29,9 +29,9 @@ services:
       - 3306:3306
     environment:
       MYSQL_DATABASE: app
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: r9QAt@SnNBon3N&i
     volumes:
-      - ./db:/var/lib/mysql:rw
+      - mysql-data:/var/lib/mysql:rw
 
   proxy:
     image: nginx:latest
@@ -49,7 +49,9 @@ services:
     depends_on:
       - db
     ports:
-      - 8888:80
+      - 8901:80
     environment:
       PMA_HOST: db
       UPLOAD_LIMIT: 50M
+volumes:
+  mysql-data: {}
